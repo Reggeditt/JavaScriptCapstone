@@ -1,12 +1,15 @@
-:root {
-  --mix: linear-gradient(red, black);
-  --red: red;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
 }
 
 li a {
@@ -15,7 +18,7 @@ li a {
 }
 
 header {
-  width: 100vw;
+  width: 100%;
   padding: 20px;
   display: flex;
   justify-content: space-around;
@@ -42,7 +45,7 @@ nav ul {
 }
 
 main {
-  width: 100vw;
+  width: 90%;
   min-height: 80vh;
   position: relative;
   display: flex;
@@ -127,3 +130,21 @@ footer {
 /* https://www.svgrepo.com/svg/405797/heart-suit */
 
 /* https://www.svgrepo.com/show/500510/close.svg */
+/* 
+@media screen and (min-width: 425px ) {
+  .main-content-wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px ) {
+  .main-content-wrap {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 1440px ) {
+  .main-content-wrap {
+    grid-template-columns: repeat(6, 1fr);
+  } 
+} */

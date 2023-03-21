@@ -32,7 +32,7 @@ const renderShow = (data) => {
 // const renderCommentsPopup = (data) => {
 //   console.log('rendering comments popup...', data);
 //   const commentsPopupWrapperEl = document.querySelector('.comments-popup-wrap');
-//   commentsPopupWrapperEl.innerHTML = '';
+//   // commentsPopupWrapperEl.innerHTML = '';
 //   const commentsPopupEl = document.createElement('div');
 //   commentsPopupEl.classList.add('comments-popup');
 //   commentsPopupEl.innerHTML = `
@@ -63,13 +63,26 @@ const renderShow = (data) => {
 //   commentsPopupWrapperEl.appendChild(commentsPopupEl);
 // };
 
-const showInfo = async (id) => {
-  const response = await fetch(`${apiBaseUrl}/shows/${id}`);
-  const data = await response.json();
-  renderShow(data);
-  // renderCommentsPopup(data);
-  return data;
+const getShowsData = () => {
+  const promises = [];
+  for (let showId = 1; showId < 20; showId += 1) {
+    promises.push(
+      fetch(`${apiBaseUrl}/shows/${showId}`)
+        .then((response) => response.json()),
+    );
+  }
+
+  Promise.all(promises)
+    .then((result) => {
+      const tvShowsData = result;
+      tvShowsData.forEach((tvShow) => {
+        renderShow(tvShow);
+        // renderCommentsPopup(tvShow);
+      });
+    });
 };
+
+getShowsData();
 
 searchFormEl.addEventListener('submit', async (event) => {
   const query = searchInputEl.value;
@@ -77,11 +90,6 @@ searchFormEl.addEventListener('submit', async (event) => {
   searchShows(query).then((data) => {
     data.forEach((show) => {
       renderShow(show.show);
-      // renderCommentsPopup(show.show);
     });
   });
 });
-
-for (let index = 1; index <= 12; index += 1) {
-  showInfo(index);
-}
