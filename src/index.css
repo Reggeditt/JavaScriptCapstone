@@ -115,6 +115,15 @@ main {
   box-shadow: 3px 5px 5px 1px rgba(0, 0, 0, 0.356);
 }
 
+footer {
+  width: 100%;
+  border: 2px solid #000;
+  font-size: 15px;
+  font-weight: 250;
+  text-align: center;
+  margin: 15px 0 5px 0;
+}
+
 /* https://www.svgrepo.com/svg/405797/heart-suit */
 
 /* https://www.svgrepo.com/show/500510/close.svg */
