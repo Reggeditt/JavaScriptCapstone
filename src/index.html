@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tv Maze App</title>
+  <link rel="stylesheet" href="index.css">
+  <script defer src="index.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo"><h1>TV Maze</h1></div>
+    <nav>
+      <ul>
+        <li><a href="#">All</a></li>
+        <li><a href="#">TV shows</a></li>
+        <li><a href="#">Single movies</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="search-wrap">
+      <form class="search-form" id="search-form">
+        <input type="text" id="search-input" class="search-input" placeholder="Search">
+        <button class="search-button">Search</button>
+      </form>
+    </section>
+    <section class="main-content-wrap"></section>
+    <section class="comments-popup-wrap">
+      <div class="comments-popup">
+        <div class="comments-popup-header">
+          <h2 class="comments-popup-image"></h2>
+          <button class="comments-popup-close-button"></button>
+        </div>
+        <h2 class="comments-popup-title"></h2>
+        <div class="comments-popup-content">
+          <div class="comments-popup-comments-list"></div>
+        </div>
+        <form class="comments-popup-form">
+          <input type="text" class="comments-popup-input-name" placeholder="name">
+          <textarea name="comment" id="comments-popup-input-comment" class="comments-popup-input-comment" placeholder="comment" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+    </section>
+    <section class="reservations-popup-wrap"></section>
+  </main>
+  <footer></footer>
+</body>
+</html>
