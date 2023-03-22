@@ -101,4 +101,3 @@ const commentCounter = async (count) => {
   comment.innerHTML = `Comments(${count})`;
 };
 
-export default commentCounter;
