@@ -68,24 +68,6 @@ const renderShow = (data) => {
   updateLikesCounter(`item${data.id}`);
 };
 
-// const getLikes = async (id) => {
-//   const response = await fetch(`${involvementAPIBaseUrl}apps/${involvementApiID}/likes`);
-//   const likesData = await response.json();
-//   console.log(likesData);
-//   console.log(likesData.map((like) => like.item_id === id));
-//   const likeBtns = document.querySelectorAll('.like-button');
-//   likeBtns.forEach((likeBtn) => {
-//     if (likesData.map((like) => like.item_id).includes(likeBtn.dataset.id)) {
-//       const specificLikeObject = likesData.filter((like) => like.item_id === likeBtn.dataset.id);
-//       console.log(specificLikeObject);
-//   //     const counter = document.getElementById(`${id}-counter`);
-//   //     counter.textContent = (`${specificLike.map((like) => like.likes)} likes`);
-//   //     console.log(counter);
-//     } else console.log('no likes yet for this button');
-//   });
-// };
-// getLikes();
-
 // const postComment = async () => {
 //   const options = {
 //     method: 'POST',
@@ -105,13 +87,23 @@ const renderShow = (data) => {
 // };
 // postComment();
 
+// const updateComments = (data) => {
+//   const commentsPopupEl = document.querySelector('.comments-popup');
+//   const commentsListEl = document.createElement('ul');
+//   commentsListEl.classList.add('comments-list');
+//   commentsListEl.innerHTML = `
+//     <li class='comment'>
+//       <p class='comment-username'>${data.username}</p>
+//       <p class='comment-text'>${data.comment}</p>
+//     </li>
+//     `;
+// };
+
 const likeBtnsListenEvents = (likeBtns) => {
   likeBtns = document.querySelectorAll('.like-button');
   likeBtns.forEach((likeBtn) => {
     likeBtn.addEventListener('click', (e) => {
-      console.log(e.target.dataset.id);
       postLike(e.target.dataset.id);
-      // getLikes(e.target.dataset.id);
     });
   });
 };
@@ -142,8 +134,6 @@ searchFormEl.addEventListener('submit', async (event) => {
   searchShows(query).then((data) => {
     data.forEach((show) => {
       renderShow(show.show);
-      getLikes(`item${data.id}-counter`);
-      getLikes(show.show.id);
     });
   });
 });
