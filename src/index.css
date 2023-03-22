@@ -90,9 +90,10 @@ main {
 }
 
 .like-button {
-  width: 20px;
-  height: 20px;
-  background-image: url(https://www.svgrepo.com/svg/498078/heart);
+  width: 30px;
+  height: 30px;
+  margin-inline: auto;
+  background-image: url(./heart-svgrepo-com.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -100,7 +101,7 @@ main {
 }
 
 .like-button:hover {
-  background-image: url('https://www.svgrepo.com/svg/434113/heart');
+  background-image: url(./heart-svgrepo-com-shaded.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
