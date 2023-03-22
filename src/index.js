@@ -93,3 +93,12 @@ searchFormEl.addEventListener('submit', async (event) => {
     });
   });
 });
+
+
+// comment counters
+const commentCounter = async (count) => {
+  const comment = document.querySelector('.comments-title');
+  comment.innerHTML = `Comments(${count})`;
+};
+
+export default commentCounter;
