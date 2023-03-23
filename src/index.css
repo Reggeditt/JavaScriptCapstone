@@ -119,6 +119,100 @@ main {
   box-shadow: 3px 5px 5px 1px rgba(0, 0, 0, 0.356);
 }
 
+.comments-popup-wrap {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  border: 1px solid #000;
+  backdrop-filter: blur(50px);
+}
+
+.comments-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 20px;
+  padding: 10px;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 30px;
+}
+
+.popup-image {
+  width: 80%;
+}
+
+.popup-close-btn {
+  font-size: 100px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.pop-show-header {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.pop-show-header > * {
+  font-weight: 600;
+}
+
+.show-language {
+  text-align: center;
+  margin-block: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.popup-close-btn:hover {
+  color: red;
+}
+
+.popup-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-content h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.comments-title {
+  font-size: 2rem;
+  font-weight: 200;
+  text-align: center;
+}
+
+.popup-comments {
+  width: 100%;
+}
+
+.popup-comment-form {
+  width: 80%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 25px;
+}
+
 footer {
   width: 100%;
   border: 2px solid #000;
@@ -127,26 +221,3 @@ footer {
   text-align: center;
   margin: 15px 0 5px 0;
 }
-
-/* https://www.svgrepo.com/svg/405797/heart-suit */
-
-/* https://www.svgrepo.com/show/500510/close.svg */
-
-/*
-@media screen and (min-width: 425px ) {
-  .main-content-wrap {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (min-width: 768px ) {
-  .main-content-wrap {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media screen and (min-width: 1440px ) {
-  .main-content-wrap {
-    grid-template-columns: repeat(6, 1fr);
-  }
-} */
