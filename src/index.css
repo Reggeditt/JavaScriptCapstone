@@ -181,11 +181,6 @@ main {
   font-weight: 600;
 }
 
-pop-show-header:nth-child(3) {
- background-color: red;
-  margin: 15px 10px 0 10px;
-}
-
 .popup-close-btn:hover {
   color: red;
 }
@@ -228,5 +223,5 @@ footer {
   font-size: 15px;
   font-weight: 250;
   text-align: center;
-  margin: 15px 0 5px 0;
+  margin: 15px 0 5px 0;
 }
