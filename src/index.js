@@ -181,6 +181,13 @@ const likeBtnsListenEvents = (likeBtns) => {
   });
 };
 
+// // counter
+const countEl = (targetEl) => {
+  const ourArray = document.querySelectorAll(`${targetEl}`);
+  const count = ourArray.length;
+  return count;
+};
+
 const getShowsData = () => {
   const promises = [];
   for (let showId = 1; showId < 15; showId += 1) {
@@ -197,6 +204,7 @@ const getShowsData = () => {
         renderShow(tvShow);
       });
       likeBtnsListenEvents();
+      countEl('.show-card');
     });
 };
 getShowsData();
