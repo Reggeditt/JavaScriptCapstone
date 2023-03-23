@@ -228,7 +228,7 @@ If you like this project star the repo :-). Thanks!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank microverse inc for this awesome challenge.
+We would like to thank microverse inc for this awesome challenge.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
