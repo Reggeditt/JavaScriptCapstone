@@ -10,7 +10,7 @@ const updateLikesCounter = async (id) => {
   const getLikes = await fetch(`${involvementAPIBaseUrl}apps/${involvementApiID}/likes`);
   const likesData = await getLikes.json();
 
-  const counter = document.getElementById(`${id} - counter`);
+  const counter = document.getElementById(`${id}-counter`);
   const likesCount = likesData.filter((like) => like.item_id === id);
   counter.textContent = (`${likesCount[0].likes + 1} likes`);
 };
@@ -31,6 +31,64 @@ const searchShows = async (query) => {
   const response = await fetch(`${apiBaseUrl}/search/shows ? q = ${query}`);
   const data = await response.json();
   return data;
+};
+
+const postComment = async (itemID, commentData) => {
+  const options = {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    body: JSON.stringify(commentData),
+  };
+
+  fetch(`${involvementAPIBaseUrl}apps/${involvementApiID}/comments/`, options)
+    .then((response) => {
+      if (response.ok);
+      throw new Error('there was a problem');
+    });
+};
+
+const getAndUpdateComment = async (data) => {
+  const popupCommentsEl = document.querySelector('.popup-comments');
+  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/71VEvRYFUclLOrVdlfg1/comments?item_id=item${data.id}`);
+  const commentsData = await response.json();
+  const commentTitleEl = document.querySelector('.comments-title');
+  commentTitleEl.textContent = `Comments (${commentsData.length})`;
+  commentsData.forEach((comment) => {
+    const commentEl = document.createElement('p');
+    commentEl.classList.add('popup-comment');
+    commentEl.textContent = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+    popupCommentsEl.appendChild(commentEl);
+  });
+
+  const commentForm = document.getElementById('popup-comment-form');
+  commentForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = commentForm.name.value;
+    const comment = commentForm.comment.value;
+    const commentData = {
+      item_id: `item${data.id}`,
+      username: name,
+      comment,
+    };
+
+    postComment(data.id, commentData);
+    commentForm.reset();
+    popupCommentsEl.innerHTML = '';
+    const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/71VEvRYFUclLOrVdlfg1/comments?item_id=item${data.id}`);
+    const commentsData = await response.json();
+    const commentTitleEl = document.querySelector('.comments-title');
+    commentTitleEl.textContent = `Comments (${commentsData.length})`;
+    commentsData.forEach((comment) => {
+      const commentEl = document.createElement('p');
+      commentEl.classList.add('popup-comment');
+      commentEl.textContent = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+      popupCommentsEl.appendChild(commentEl);
+    });
+    const commentEl = document.createElement('p');
+    commentEl.classList.add('popup-comment');
+    commentEl.textContent = `${commentsData[1].creation_date} ${commentData.username}: ${commentData.comment}`;
+    popupCommentsEl.appendChild(commentEl);
+  });
 };
 
 const closePopup = (id) => {
@@ -82,6 +140,7 @@ const renderCommentsPopup = (data) => {
   `;
   commentsPopupWrapperEl.appendChild(commentsPopupEl);
   closePopup(data.id);
+  getAndUpdateComment(data);
 };
 
 const renderShow = (data) => {
@@ -112,37 +171,6 @@ const renderShow = (data) => {
   });
   updateLikesCounter(`item${data.id}`);
 };
-
-// const postComment = async () => {
-//   const options = {
-//     method: 'POST',
-//     headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//     body: JSON.stringify({
-//       item_id: 'item1',
-//       username: 'Jane',
-//       comment: 'Hello',
-//     }),
-//   };
-
-//   fetch(${involvementAPIBaseUrl}apps/${involvementApiID}/comments/, options)
-//     .then((response) => {
-//       if (response.ok) console.log(response.status);
-//       throw new Error('there was a problem');
-//     });
-// };
-// postComment();
-
-// const updateComments = (data) => {
-//   const commentsPopupEl = document.querySelector('.comments-popup');
-//   const commentsListEl = document.createElement('ul');
-//   commentsListEl.classList.add('comments-list');
-//   commentsListEl.innerHTML = `
-//     <li class='comment'>
-//       <p class='comment-username'>${data.username}</p>
-//       <p class='comment-text'>${data.comment}</p>
-//     </li>
-//     `;
-// };
 
 const likeBtnsListenEvents = (likeBtns) => {
   likeBtns = document.querySelectorAll('.like-button');
