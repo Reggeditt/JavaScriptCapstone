@@ -89,6 +89,7 @@ const getAndUpdateComment = async (data) => {
     commentEl.classList.add('popup-comment');
     commentEl.textContent = `${commentsData[1].creation_date} ${commentData.username}: ${commentData.comment}`;
     popupCommentsEl.appendChild(commentEl);
+    commentsCounter('.popup-comment');
   });
 };
 
