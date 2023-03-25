@@ -1,5 +1,6 @@
 import './index.css';
 import showsCounter from './modules/showsCounter.js';
+import commentsCounter from './modules/commentsCounter.js';
 
 const apiBaseUrl = 'https://api.tvmaze.com';
 const involvementAPIBaseUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
@@ -29,7 +30,7 @@ const postLike = async (id) => {
 };
 
 const searchShows = async (query) => {
-  const response = await fetch(`${apiBaseUrl}/search/shows ? q = ${query}`);
+  const response = await fetch(`${apiBaseUrl}/search/shows?q=${query}`);
   const data = await response.json();
   return data;
 };
@@ -142,6 +143,7 @@ const renderCommentsPopup = (data) => {
   commentsPopupWrapperEl.appendChild(commentsPopupEl);
   closePopup(data.id);
   getAndUpdateComment(data);
+  commentsCounter('.popup-comment');
 };
 
 const renderShow = (data) => {
@@ -209,6 +211,7 @@ searchFormEl.addEventListener('submit', async (event) => {
   searchShows(query).then((data) => {
     data.forEach((show) => {
       renderShow(show.show);
+      showsCounter('.show-card');
     });
   });
 });
