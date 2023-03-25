@@ -150,6 +150,7 @@ main {
 
 .popup-image {
   width: 80%;
+  max-height: 700px;
 }
 
 .popup-close-btn {
