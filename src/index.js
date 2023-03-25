@@ -26,7 +26,6 @@ const postLike = async (id) => {
     }),
   };
   fetch(`${involvementAPIBaseUrl}apps/${involvementApiID}/likes`, options);
-  updateLikesCounter(id);
 };
 
 const searchShows = async (query) => {
@@ -180,6 +179,9 @@ const likeBtnsListenEvents = (likeBtns) => {
   likeBtns.forEach((likeBtn) => {
     likeBtn.addEventListener('click', (e) => {
       postLike(e.target.dataset.id);
+      const counter = document.getElementById(`${e.target.dataset.id}-counter`);
+      const count = +counter.innerText.split(' ')[0];
+      counter.innerText = `${count + 1} likes`;
     });
   });
 };
